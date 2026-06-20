@@ -8,7 +8,6 @@ import pe.edu.upc.profiles_service.profiles.domain.model.commands.CreateUserProf
 import pe.edu.upc.profiles_service.profiles.domain.model.commands.DeleteUserProfileCommand;
 import pe.edu.upc.profiles_service.profiles.domain.model.commands.UpdateUserProfileCommand;
 import pe.edu.upc.profiles_service.profiles.domain.services.UserProfileCommandService;
-import pe.edu.upc.center.jameoFit.profiles.infrastructure.persistence.jpa.repositories.*;
 import pe.edu.upc.profiles_service.profiles.infrastructure.persistence.jpa.repositories.ActivityLevelRepository;
 import pe.edu.upc.profiles_service.profiles.infrastructure.persistence.jpa.repositories.AllergyRepository;
 import pe.edu.upc.profiles_service.profiles.infrastructure.persistence.jpa.repositories.ObjectiveRepository;
