@@ -1,5 +1,6 @@
 package pe.edu.upc.profiles_service.profiles.application.internal.outboundservices.acl;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -12,7 +13,7 @@ public class ExternalIngredientService {
     private final String internalSecret;
 
     public ExternalIngredientService(
-            RestClient.Builder restClientBuilder,
+            @Qualifier("loadBalancedRestClientBuilder") RestClient.Builder restClientBuilder,
             @Value("${profiles.integrations.recipes.base-url}") String recipesBaseUrl,
             @Value("${authorization.internal-service.secret}") String internalSecret) {
         this.restClient = restClientBuilder.baseUrl(recipesBaseUrl).build();
