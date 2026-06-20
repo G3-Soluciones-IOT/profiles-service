@@ -2,5 +2,5 @@ FROM eclipse-temurin:25-jre
 WORKDIR /app
 COPY target/*.jar /app/app.jar
 ENV SPRING_PROFILES_ACTIVE=default
-EXPOSE 8082
+EXPOSE 8086
 ENTRYPOINT ["java","-jar","/app/app.jar"]
