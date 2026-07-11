@@ -34,6 +34,20 @@ public class UserProfileController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<UserProfileResource> getByUserId(@PathVariable Long userId) {
+        return facade.fetchByUserId(userId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/exists/by-user/{userId}")
+    public ResponseEntity<Void> existsByUserId(@PathVariable Long userId) {
+        return facade.existsByUserId(userId)
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
+    }
+
     @PostMapping
     public ResponseEntity<UserProfileResource> create(@RequestBody CreateUserProfileResource r) {
         var newId = facade.create(r);

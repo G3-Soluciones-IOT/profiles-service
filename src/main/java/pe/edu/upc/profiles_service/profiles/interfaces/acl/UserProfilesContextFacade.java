@@ -8,6 +8,7 @@ import pe.edu.upc.profiles_service.profiles.domain.model.commands.DeleteUserProf
 import pe.edu.upc.profiles_service.profiles.domain.model.commands.UpdateUserProfileCommand;
 import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetAllUserProfilesQuery;
 import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetUserProfileByIdQuery;
+import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetUserProfileByUserIdQuery;
 import pe.edu.upc.profiles_service.profiles.domain.services.UserProfileCommandService;
 import pe.edu.upc.profiles_service.profiles.domain.services.UserProfileQueryService;
 import pe.edu.upc.profiles_service.profiles.interfaces.rest.resources.CreateUserProfileResource;
@@ -39,6 +40,15 @@ public class UserProfilesContextFacade {
     public Optional<UserProfileResource> fetchById(Long id) {
         return queryService.handle(new GetUserProfileByIdQuery(id))
                 .map(UserProfileResourceFromEntityAssembler::toResourceFromEntity);
+    }
+
+    public Optional<UserProfileResource> fetchByUserId(Long userId) {
+        return queryService.handle(new GetUserProfileByUserIdQuery(userId))
+                .map(UserProfileResourceFromEntityAssembler::toResourceFromEntity);
+    }
+
+    public boolean existsByUserId(Long userId) {
+        return queryService.handle(new GetUserProfileByUserIdQuery(userId)).isPresent();
     }
 
     /**

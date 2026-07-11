@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.profiles_service.profiles.domain.model.aggregates.UserProfile;
 import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetAllUserProfilesQuery;
 import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetUserProfileByIdQuery;
+import pe.edu.upc.profiles_service.profiles.domain.model.queries.GetUserProfileByUserIdQuery;
 import pe.edu.upc.profiles_service.profiles.domain.services.UserProfileQueryService;
 import pe.edu.upc.profiles_service.profiles.infrastructure.persistence.jpa.repositories.UserProfileRepository;
 
@@ -27,5 +28,10 @@ public class UserProfileQueryServiceImpl implements UserProfileQueryService {
     @Override
     public Optional<UserProfile> handle(GetUserProfileByIdQuery query) {
         return this.userProfileRepository.findById(query.userProfileId());
+    }
+
+    @Override
+    public Optional<UserProfile> handle(GetUserProfileByUserIdQuery query) {
+        return this.userProfileRepository.findByUserId(query.userId());
     }
 }

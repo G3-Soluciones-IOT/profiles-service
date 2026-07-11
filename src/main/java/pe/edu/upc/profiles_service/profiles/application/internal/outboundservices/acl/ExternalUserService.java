@@ -23,14 +23,17 @@ public class ExternalUserService {
     public boolean userExists(Long userId) {
         if (userId == null || userId <= 0) return false;
         try {
-            var username = restClient.get()
-                    .uri("/api/v1/users/{userId}/username", userId)
+            var user = restClient.get()
+                    .uri("/api/v1/users/{userId}", userId)
                     .header("X-Internal-Request", internalSecret)
                     .retrieve()
-                    .body(String.class);
-            return username != null && !username.isBlank();
+                    .body(UserResource.class);
+            return user != null && user.id() != null;
         } catch (RestClientException exception) {
             return false;
         }
+    }
+
+    private record UserResource(Long id, String username) {
     }
 }
