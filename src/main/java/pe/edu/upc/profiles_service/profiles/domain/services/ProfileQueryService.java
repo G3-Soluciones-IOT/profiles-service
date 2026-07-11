@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ProfileQueryService {
     List<Profile> getAllUsers();
     Optional<Profile> getUserById(Long id);
+    Optional<Profile> getUserByUserId(Long userId);
 }

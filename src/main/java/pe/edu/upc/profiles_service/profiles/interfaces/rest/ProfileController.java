@@ -32,6 +32,13 @@ public class ProfileController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<ProfileResource> getByUserId(@PathVariable Long userId) {
+        return facade.fetchByUserId(userId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<Long> create(@RequestBody CreateProfileResource r) {
         var newId = facade.create(r);

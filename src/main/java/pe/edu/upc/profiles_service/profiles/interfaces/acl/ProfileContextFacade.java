@@ -30,6 +30,10 @@ public class ProfileContextFacade {
         return queryService.getUserById(id).map(UserResourceFromEntityAssembler::toResourceFromEntity);
     }
 
+    public Optional<ProfileResource> fetchByUserId(Long userId) {
+        return queryService.getUserByUserId(userId).map(UserResourceFromEntityAssembler::toResourceFromEntity);
+    }
+
     public Long create(CreateProfileResource resource) {
         CreateProfileCommand command = CreateUserCommandFromResourceAssembler.toCommandFromResource(resource);
         return commandService.handle(command).getId();
